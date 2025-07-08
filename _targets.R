@@ -18,7 +18,8 @@ tar_option_set(
     "rmarkdown",
     "rsample",
     "tidyverse",
-    "yardstick"
+    "yardstick",
+    "pandoc"
   )
 )
 
