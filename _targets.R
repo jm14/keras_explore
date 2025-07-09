@@ -1,11 +1,20 @@
 library(targets)
 library(tarchetypes)
+library(crew)
 source("R/functions.R")
 options(tidyverse.quiet = TRUE)
 
+
+# Updates: use crew instead of clustermq
+# See
+tar_option_set(
+  controller = crew_controller_local(workers = 2)
+)
+
 # Uncomment below to use local multicore computing
 # when running tar_make_clustermq().
-options(clustermq.scheduler = "multicore")
+# options(clustermq.scheduler = "multicore") #sometimes causes problems on macos/rstudio
+#options(clustermq.scheduler="multiprocess") # more robust
 
 # Uncomment below to deploy targets to parallel jobs
 # on a Sun Grid Engine cluster when running tar_make_clustermq().
@@ -19,7 +28,8 @@ tar_option_set(
     "rsample",
     "tidyverse",
     "yardstick",
-    "pandoc"
+    "pandoc",
+    "crew"
   )
 )
 
